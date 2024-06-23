@@ -2,6 +2,15 @@ pipeline {
     agent any
 
     stages {
+
+	stage('Установка зависимостей') {
+            steps {
+                script {
+                    sh 'pip3 install pandas numpy scikit-learn matplotlib seaborn'
+                }
+            }
+        }
+
         stage('Сбор данных') {
             steps {
                 script {
