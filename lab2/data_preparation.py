@@ -4,9 +4,12 @@ from sklearn.model_selection import train_test_split
 
 data = pd.read_csv('./data.csv')
 
-# Удаление ненужных столбцов и заполнение пропусков
+# Удаление ненужных столбцов
 data = data.drop(columns=['PassengerId', 'Name', 'Ticket', 'Cabin'])
-data = data.fillna(data.mean())
+
+# Заполнение пропусков только в числовых столбцах
+numeric_cols = data.select_dtypes(include=['float64', 'int64']).columns
+data[numeric_cols] = data[numeric_cols].fillna(data[numeric_cols].mean())
 
 # Преобразование категориальных данных
 data = pd.get_dummies(data, columns=['Sex', 'Embarked'], drop_first=True)
