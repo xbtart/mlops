@@ -6,7 +6,7 @@ pipeline {
 	stage('Установка зависимостей') {
             steps {
                 script {
-                    sh 'pip3 install pandas numpy scikit-learn matplotlib seaborn'
+                    sh 'pip3 install pandas kaggle numpy scikit-learn matplotlib seaborn'
                 }
             }
         }
