@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Сбор данных') {
+            steps {
+                script {
+                    sh 'python3 ~/mlops/lab2/data_collection.py'
+                }
+            }
+        }
+
+        stage('Подготовка данных') {
+            steps {
+                script {
+                    sh 'python3 ~/mlops/lab2/data_preparation.py'
+                }
+            }
+        }
+
+        stage('Обучение модели') {
+            steps {
+                script {
+                    sh 'python3 ~/mlops/lab2/train_model.py'
+                }
+            }
+        }
+
+        stage('Оценка модели') {
+            steps {
+                script {
+                    sh 'python3 ~/mlops/lab2/evaluate_model.py'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/*.csv, **/*.pkl', allowEmptyArchive: true
+        }
+    }
+}
