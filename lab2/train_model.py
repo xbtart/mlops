@@ -4,7 +4,7 @@ import pickle
 
 train = pd.read_csv('./train.csv')
 
-# Пример: обучение модели на основе случайного леса
+# Обучение модели на основе случайного леса
 X_train = train.drop(columns=['Survived'])
 y_train = train['Survived']
 
