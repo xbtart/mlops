@@ -4,10 +4,10 @@ from sklearn.metrics import classification_report, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-test = pd.read_csv('~/mlops/lab2/test.csv')
+test = pd.read_csv('./test.csv')
 
 # Загрузка модели
-with open('~/mlops/lab2/model.pkl', 'rb') as file:
+with open('./model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 X_test = test.drop(columns=['Survived'])
